@@ -391,6 +391,15 @@ void Window::set_menu_actions() {
       view->goto_next_spellcheck_error();
   });
   
+  menu.add_action("source_git_status", [this]() {    
+    Project::current=Project::create();
+
+    //we want to save changes before getting the status, even though we are technically not compiling or running
+    if(Config::get().project.save_on_compile_or_run)
+      Project::save_files(Project::current->build->project_path);
+
+    Terminal::get().async_process("git status", Project::current->build->project_path);
+  });
   menu.add_action("source_git_next_diff", [this]() {
     if(auto view=Notebook::get().get_current_view())
       view->git_goto_next_diff();

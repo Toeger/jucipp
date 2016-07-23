@@ -132,6 +132,10 @@ Menu::Menu() {
         <submenu>
           <attribute name='label' translatable='yes'>_Git</attribute>
           <item>
+            <attribute name='label' translatable='yes'>_Status</attribute>
+            <attribute name='action'>app.source_git_status</attribute>
+          </item>
+          <item>
             <attribute name='label' translatable='yes'>_Go _to _Next _Diff</attribute>
             <attribute name='action'>app.source_git_next_diff</attribute>
           </item>
